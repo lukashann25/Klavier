@@ -1,1 +1,100 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Virtuelles Klavier</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-view="keyboard">
+<div class="topbar">
+  <span class="bar-title" id="bar-title"></span>
+  <div class="controls">
+    <div class="seg" id="speed" role="group" aria-label="Tempo">
+      <button type="button" data-s="0.5" aria-pressed="false">50%</button>
+      <button type="button" data-s="0.75" aria-pressed="false">75%</button>
+      <button type="button" data-s="1" aria-pressed="true">100%</button>
+    </div>
+    <button type="button" class="btn" id="wait-btn" aria-pressed="false">Warten</button>
+    <span class="score" id="score">0 / 0</span>
+    <button type="button" class="btn primary" id="play-btn">Start</button>
+  </div>
+  <button type="button" class="menubtn" id="open-menu" aria-label="Menü" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="5" width="18" height="3" rx="1.5"/><rect x="3" y="10.5" width="18" height="3" rx="1.5"/><rect x="3" y="16" width="18" height="3" rx="1.5"/></svg>
+  </button>
+  <button type="button" class="menubtn" id="back-btn" aria-label="Zurück">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:22px;height:22px"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+  </button>
+</div>
 
+<div class="view" id="view-menu">
+  <div class="home">
+    <button type="button" class="homecard" id="go-keyboard">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="14" width="52" height="36" rx="5"/><path d="M19 14v22M32 14v22M45 14v22M13 36h12M26 36h12M39 36h12" stroke-linecap="round"/><path d="M6 36h52" stroke-width="0"/></svg>
+      <span>Tastatur</span>
+    </button>
+    <button type="button" class="homecard" id="go-learn">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 46V14l26-6v32"/><ellipse cx="18" cy="46" rx="7" ry="5.5"/><ellipse cx="44" cy="40" rx="7" ry="5.5"/></svg>
+      <span>Spielen lernen</span>
+    </button>
+  </div>
+</div>
+<div class="view" id="view-songs">
+  <div class="songlist" id="songlist"></div>
+</div>
+
+<div class="menu-catch" id="menu-catch" hidden></div>
+<div class="menu" id="menu" role="dialog" aria-labelledby="menu-title" hidden>
+  <h2 id="menu-title">Tastatur</h2>
+  <div class="mrow">
+    <span class="mlabel">Sichtbare Tasten: <b id="vis-count">17</b></span>
+    <div class="stepper" role="group" aria-label="Sichtbare Tasten">
+      <button type="button" id="keys-minus" aria-label="Eine Taste weniger">−</button>
+      <button type="button" id="keys-plus" aria-label="Eine Taste mehr">+</button>
+    </div>
+  </div>
+  <div class="mrow">
+    <span class="mlabel">Tasten belegen</span>
+    <button type="button" class="btn" id="open-settings" aria-haspopup="dialog">Öffnen</button>
+  </div>
+</div>
+
+<div class="case">
+  <div class="fall" id="fall"><canvas id="fallcanvas"></canvas></div>
+  <div class="felt">
+    <button type="button" class="pedal" id="pedal" aria-label="Pedal (gedrückt halten)">
+      <svg viewBox="0 0 34 18" aria-hidden="true"><path d="M4 16 L9 3 H25 L30 16 Z" fill="currentColor" opacity=".9"/></svg>
+    </button>
+  </div>
+  <div class="keys" id="keys" role="group" aria-label="Klaviatur"></div>
+</div>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet-head">
+      <h2 id="sheet-title">Tasten belegen</h2>
+      <div class="sheet-actions">
+        <button type="button" class="btn" id="reset">Zurücksetzen</button>
+        <button type="button" class="btn" id="close-settings">Schließen</button>
+      </div>
+    </div>
+    <p class="sheet-hint">Links steht die Note, rechts die Taste deiner Computertastatur. Tippe auf die Taste und drücke dann die gewünschte neue Taste. Jede Taste gehört nur zu einer Note. Mit Esc brichst du ab.</p>
+    <div class="list" id="list"></div>
+  </div>
+</div>
+
+<div class="overlay" id="result" hidden>
+  <div class="sheet result-sheet" role="dialog" aria-modal="true" aria-labelledby="res-title">
+    <h2 id="res-title">Geschafft!</h2>
+    <p class="sheet-hint" id="res-text"></p>
+    <div class="sheet-actions">
+      <button type="button" class="btn primary" id="res-again">Nochmal</button>
+      <button type="button" class="btn" id="res-list">Zur Liste</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+                                                                      </html>
+  
